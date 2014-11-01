@@ -22,7 +22,8 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'org))
+(eval-when-compile (require 'org)
+                   (require 'cl))
 
 (defun org-wc-in-heading-line ()
   "Is point in a line starting with `*'?"
@@ -50,7 +51,7 @@ LaTeX macros are counted as 1 word."
   (let ((wc 0)
         (block-begin-re "^#\\\+BEGIN")
         (block-end-re "^#\\+END")
-        (latex-macro-regexp "\\\\[A-Za-z]+\\(\\[[^]]*\\]\\|\\){\\([^}]*\\)}")
+        (latex-macro-regexp "\\\\[A-Za-z]+\\(\\[[^]]*\\]\\|\\){\\([^}]*\\)}"))
     (save-excursion
       (goto-char beg)
       (while (< (point) end)
